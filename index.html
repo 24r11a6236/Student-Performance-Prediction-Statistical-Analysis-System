@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Performance Prediction & Statistical Analysis System</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div id="loginPage" class="screen">
+        <div class="login-card">
+            <h2>Student Performance System</h2>
+            <p>Sign in to access analytics and records.</p>
+            <input type="text" id="username" placeholder="Username" value="admin">
+            <input type="password" id="password" placeholder="Password" value="admin123">
+            <button onclick="login()">Sign In</button>
+        </div>
+    </div>
+
+    <div id="appView" class="screen hidden">
+        <nav>
+            <h2>SP System</h2>
+            <a href="#" onclick="showTab('overview')">Overview</a>
+            <a href="#" onclick="showTab('students')">Students</a>
+            <a href="#" onclick="showTab('stats')">Statistics</a>
+            <button onclick="logout()">Sign Out</button>
+        </nav>
+        <main>
+            <div id="overviewTab" class="tab-content">
+                <h2>Overview Dashboard</h2>
+                <div class="cards">
+                    <div class="card"><h3>Total Students</h3><p id="totalStudents">0</p></div>
+                    <div class="card"><h3>Avg Predicted Score</h3><p id="avgPred">0</p></div>
+                    <div class="card"><h3>Avg Attendance</h3><p id="avgAtt">0%</p></div>
+                    <div class="card"><h3>Needs Attention</h3><p id="atRisk">0</p></div>
+                </div>
+                <div class="chart-container">
+                    <canvas id="predChart"></canvas>
+                </div>
+            </div>
+            <div id="studentsTab" class="tab-content hidden">
+                <h2>Student Records</h2>
+                <button onclick="openAddModal()">+ Add Student</button>
+                <a href="/api/export" class="btn">Export CSV</a>
+                <table>
+                    <thead>
+                        <tr><th>Name</th><th>Roll No</th><th>Dept</th><th>Attendance</th><th>Internal</th><th>Study Hrs</th><th>Predicted</th><th>Risk</th><th>Actions</th></tr>
+                    </thead>
+                    <tbody id="studentTableBody"></tbody>
+                </table>
+            </div>
+            <div id="statsTab" class="tab-content hidden">
+                <h2>Statistical Analysis</h2>
+                <p id="statsText">Loading statistics...</p>
+            </div>
+        </main>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
